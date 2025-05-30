@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { FlatList, ActivityIndicator } from 'react-native';
 import { Image } from 'react-native';
@@ -29,6 +29,11 @@ export default function App() {
   return (
   <View style={styles.container}>
     <Text style={styles.titolo}>Abbonati di quest'anno</Text>
+    <View style={styles.buttonRow}>
+      <Button title="Refresh" color="#1976d2" onPress={() => {}} />
+      <Button title="Aggiungi" color="#388e3c" onPress={() => {}} />
+      <Button title="Elimina" color="#d32f2f" onPress={() => {}} />
+    </View>
     {loading ? (
       <ActivityIndicator size="large" color="#0000ff" />
     ) : (
@@ -108,5 +113,11 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     alignSelf: 'center',
     letterSpacing: 1,
-  }
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 18,
+    gap: 8
+  },
 });
