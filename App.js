@@ -37,22 +37,27 @@ export default function App() {
         keyExtractor={(item) => String(item.id ?? Math.random())}
         renderItem={({ item }) => (
           <View style={styles.cella}>
-            <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-              {item.immagine && (
-                <Image
-                  source={{ uri: item.immagine }}
-                  style={{ width: 70, height: 70, borderRadius: 35, marginRight: 18, marginTop: 4 }}
-                />
+            {item.immagine && (
+              <Image
+                source={{ uri: item.immagine }}
+                style={{
+                  width: 56,
+                  height: 56,
+                  borderRadius: 28,
+                  marginRight: 18,
+                  alignSelf: 'center',
+                  backgroundColor: '#e3eaf2'
+                }}
+              />
+            )}
+            <View style={{ flex: 1 }}>
+              {Object.entries(item).map(([key, value]) =>
+                key !== 'immagine' && (
+                  <Text key={key} style={styles.riga}>
+                    <Text style={styles.label}>{key}: </Text>{value}
+                  </Text>
+                )
               )}
-              <View style={{ flex: 1 }}>
-                {Object.entries(item).map(([key, value]) =>
-                  key !== 'immagine' && (
-                    <Text key={key} style={styles.riga}>
-                      <Text style={styles.label}>{key}: </Text>{value}
-                    </Text>
-                  )
-                )}
-              </View>
             </View>
           </View>
         )}
@@ -65,36 +70,43 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f2f6fa',
     paddingTop: 40,
     paddingHorizontal: 10,
   },
   cella: {
     width: '100%',
-    backgroundColor: '#f9f9f9',
-    borderRadius: 10,
-    marginBottom: 18,
+    backgroundColor: '#fff',
+    borderRadius: 14,
+    marginBottom: 22,
     padding: 18,
-    shadowColor: '#000',
-    shadowOpacity: 0.07,
-    shadowRadius: 6,
-    elevation: 3,
+    shadowColor: '#003366',
+    shadowOpacity: 0.09,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 4,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   riga: {
-    fontSize: 17,
-    marginBottom: 4,
+    fontSize: 16,
+    marginBottom: 6,
     flexWrap: 'wrap',
     color: '#222',
+    borderBottomWidth: 0.5,
+    borderBottomColor: '#e0e0e0',
+    paddingBottom: 2,
   },
   label: {
     fontWeight: 'bold',
-    color: '#005',
+    color: '#1976d2',
   },
   titolo: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: 'bold',
-    color: '#003366',
-    marginBottom: 18,
+    color: '#1976d2',
+    marginBottom: 24,
     alignSelf: 'center',
+    letterSpacing: 1,
   }
 });
